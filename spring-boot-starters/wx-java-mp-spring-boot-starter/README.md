@@ -19,7 +19,7 @@
     wx.mp.aes-key=@aesKey
     wx.mp.use-stable-access-token=@useStableAccessToken
     # 存储配置redis(可选)
-    wx.mp.config-storage.type= edis                     # 配置类型: Memory(默认), Jedis, RedisTemplate
+    wx.mp.config-storage.type=Jedis                     # 配置类型: Memory(默认), Jedis, RedisTemplate, Redisson
     wx.mp.config-storage.key-prefix=wx                  # 相关redis前缀配置: wx(默认)
     wx.mp.config-storage.redis.host=127.0.0.1
     wx.mp.config-storage.redis.port=6379
@@ -37,6 +37,8 @@
 	#wx.mp.hosts.open-host=http://proxy.com/
 	#wx.mp.hosts.mp-host=http://proxy.com/
     ```
+    使用 `wx.mp.config-storage.type=redisson` 时，可省略 `wx.mp.config-storage.redis.host` 以复用应用已有的 `RedissonClient` Bean。配置非空的 host 时，Starter 会创建公众号专用客户端。
+
 3. 自动注入的类型
 
 - `WxMpService`
